@@ -9,29 +9,28 @@ Complex Empirical Orthogonal Functions (CEOFs) extend the concept of EOFs to com
 - **Amplitude**: The magnitude of the complex EOF represents the strength of the pattern.
 - **Phase**: The argument (or angle) of the complex EOF represents the phase of the oscillation.
 
-### Mathematical Definition:
+### Mathematical Procedure:
 
-Given a complex data matrix \( \mathbf{Z} \) with dimensions \( m \times n \) (where \( m \) is the number of time steps and \( n \) is the number of spatial points), the complex covariance matrix \( \mathbf{C} \) is given by:
+Given a complex data matrix $\mathbf{Z}$ with dimensions $m \times n$ (where $m$ is the number of time steps and $n$ is the number of spatial points), perform SVD:
 
-\[
-\mathbf{C} = \frac{1}{m-1} \mathbf{Z}^H \mathbf{Z}
-\]
+$$
+\mathbf{Z} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+$$
 
 Where:
-- \( \mathbf{Z}^H \) is the conjugate transpose of \( \mathbf{Z} \).
+- $\mathbf{U}$ contains the left singular vectors (Complex EOF modes).
+- $\mathbf{\Sigma}$ contains the singular values.
+- $\mathbf{V}^T$ contains the right singular vectors.
 
-Perform eigenvalue decomposition on \( \mathbf{C} \) to obtain the complex EOFs and their corresponding eigenvalues.
+### Spatial Patterns (Complex EOF Modes):
+The spatial patterns (Complex EOF modes) are given by the columns of $\mathbf{U}$.
 
 ### Time Series (Complex Principal Components):
+The time series corresponding to each CEOF are obtained by multiplying the right singular vectors by the singular values:
 
-The time series corresponding to each CEOF are obtained by projecting the original complex data onto the complex EOFs:
-
-\[
-\mathbf{PC} = \mathbf{Z} \mathbf{E}
-\]
-
-Where:
-- \( \mathbf{PC} \) represents the complex time series associated with each CEOF.
+$$
+\mathbf{PC} = \mathbf{U} \mathbf{\Sigma}
+$$
 
 ### Summary:
 CEOFs are useful for analyzing data with oscillatory behavior, providing insights into both the magnitude and phase of the dominant modes of variability.
