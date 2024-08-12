@@ -7,39 +7,32 @@ Empirical Orthogonal Functions (EOFs) are a powerful tool for analyzing spatial-
 
 ### EOF Analysis:
 - **Data Matrix**: The data is typically organized as a matrix where each column represents a spatial variable, and each row represents a time step.
-- **Covariance Matrix**: Compute the covariance matrix of the data to capture the relationships between different spatial points.
-- **Eigenvalue Decomposition**: Perform eigenvalue decomposition of the covariance matrix to extract the principal components (EOFs).
-- **EOF Modes**: The eigenvectors (EOFs) represent the spatial patterns of variability.
-- **Principal Components (PCs)**: The time series associated with each EOF, representing how the strength of the spatial pattern varies over time.
+- **SVD for EOFs**: The data matrix can be decomposed using Singular Value Decomposition (SVD) to extract the principal components (EOFs).
+- **EOF Modes**: The left singular vectors from the SVD represent the spatial patterns of variability (EOFs).
+- **Principal Components (PCs)**: The right singular vectors scaled by the singular values represent the time series associated with each EOF, representing how the strength of the spatial pattern varies over time.
 
-### Mathematical Definition:
+### Mathematical Procedure:
 
-Given a data matrix $\( \mathbf{X} \)$ with dimensions $\( m \times n \)$ (where $\( m \)$ is the number of time steps and $\( n \)$ is the number of spatial points), the covariance matrix $\( \mathbf{C} \)$ is given by:
+Given a data matrix $\mathbf{X}$ with dimensions $m \times n$ (where $m$ is the number of time steps and $n$ is the number of spatial points), perform SVD:
 
-$$\
-\mathbf{C} = \frac{1}{m-1} \mathbf{X}^T \mathbf{X}
-\$$
-
-Perform eigenvalue decomposition on \( \mathbf{C} \):
-
-$$\[
-\mathbf{C} = \mathbf{E} \mathbf{\Lambda} \mathbf{E}^T
-\]$$
+$$
+\mathbf{X} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+$$
 
 Where:
-- $\( \mathbf{E} \)$ contains the eigenvectors (EOFs).
-- $\( \mathbf{\Lambda} \)$ contains the eigenvalues, representing the variance explained by each EOF.
+- $\mathbf{U}$ (dimensions $m \times m$) contains the left singular vectors (EOF modes).
+- $\mathbf{\Sigma}$ (dimensions $m \times n$) is a diagonal matrix containing the singular values.
+- $\mathbf{V}^T$ (dimensions $n \times n$) contains the right singular vectors.
+
+### Spatial Patterns (EOF Modes):
+The spatial patterns (EOF modes) are given by the columns of $\mathbf{U}$.
 
 ### Time Series (Principal Components):
+The time series (Principal Components, PCs) are obtained by multiplying the right singular vectors by the singular values:
 
-The time series (Principal Components, PCs) corresponding to each EOF are obtained by projecting the original data onto the EOFs:
-
-$$\[
-\mathbf{PC} = \mathbf{X} \mathbf{E}
-\]$$
-
-Where:
-- $\( \mathbf{PC} \)$ represents the time series associated with each EOF.
+$$
+\mathbf{PC} = \mathbf{U} \mathbf{\Sigma}
+$$
 
 ### Summary:
 EOF analysis is a method used to identify the most important patterns of variability in spatial-temporal data, making it a cornerstone technique in fields like meteorology, oceanography, and climate science.
