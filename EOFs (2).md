@@ -14,11 +14,11 @@ Empirical Orthogonal Functions (EOFs) are a powerful tool for analyzing spatial-
 
 ### Mathematical Definition:
 
-Given a data matrix $\( \mathbf{X} \)$ with dimensions $\( m \times n \)$ (where $\( m \)$ is the number of time steps and $\( n \)$ is the number of spatial points), the covariance matrix \( \mathbf{C} \) is given by:
+Given a data matrix $\( \mathbf{X} \)$ with dimensions $\( m \times n \)$ (where $\( m \)$ is the number of time steps and $\( n \)$ is the number of spatial points), the covariance matrix $\( \mathbf{C} \)$ is given by:
 
-$$\[
+$$\
 \mathbf{C} = \frac{1}{m-1} \mathbf{X}^T \mathbf{X}
-\]$$
+\$$
 
 Perform eigenvalue decomposition on \( \mathbf{C} \):
 
